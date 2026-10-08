@@ -62,7 +62,22 @@
     document.body.classList.remove("gate");
     box.hidden = true;
     content.hidden = false;
-    window.scrollTo(0, 0);
+
+    var reduceMotion =
+      window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    /* 内容淡入，并平滑滚动到简历内容顶部 */
+    window.requestAnimationFrame(function () {
+      content.classList.add("is-ready");
+      if (typeof content.scrollIntoView === "function") {
+        content.scrollIntoView({
+          behavior: reduceMotion ? "auto" : "smooth",
+          block: "start",
+        });
+      } else {
+        window.scrollTo(0, 0);
+      }
+    });
 
     var site = document.createElement("script");
     site.src = "script.js";

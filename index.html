@@ -155,6 +155,22 @@
         width: 100%;
       }
     }
+
+    /* 解锁后简历内容淡入 */
+    #resumeContent {
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    #resumeContent.is-ready {
+      opacity: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #resumeContent {
+        transition: none;
+      }
+    }
   </style>
 </head>
 <body class="gate">
